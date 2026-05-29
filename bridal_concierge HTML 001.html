@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Bridal Concierge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;scroll-behavior:smooth}
+:root{--black:#0a0a0a;--white:#ffffff;--grey:#f5f5f3;--mid:#888;--border:#e0e0e0}
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',sans-serif;color:var(--black);background:var(--white);overflow-x:hidden}
+.serif{font-family:'Cormorant Garamond',serif}
+
+/* NAV */
+nav{display:flex;justify-content:space-between;align-items:center;padding:24px 48px;border-bottom:0.5px solid var(--border);position:sticky;top:0;background:var(--white);z-index:100}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;letter-spacing:0.12em;text-decoration:none;color:var(--black)}
+.nav-links{display:flex;gap:32px}
+.nav-links a{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--black);text-decoration:none;opacity:0.6;transition:opacity 0.2s}
+.nav-links a:hover{opacity:1}
+.nav-cta{font-size:11px;letter-spacing:0.15em;text-transform:uppercase;padding:10px 24px;border:0.5px solid var(--black);background:transparent;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all 0.2s}
+.nav-cta:hover{background:var(--black);color:var(--white)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{width:22px;height:1px;background:var(--black);display:block;transition:all 0.3s}
+.mobile-menu{display:none;flex-direction:column;gap:0;position:absolute;top:72px;left:0;right:0;background:var(--white);border-bottom:0.5px solid var(--border);z-index:99;padding:0}
+.mobile-menu a{font-size:12px;letter-spacing:0.15em;text-transform:uppercase;color:var(--black);text-decoration:none;padding:18px 48px;border-bottom:0.5px solid var(--border);opacity:0.7}
+.mobile-menu a:hover{opacity:1;background:var(--grey)}
+.mobile-menu .mob-cta{padding:18px 48px;font-size:12px;letter-spacing:0.15em;text-transform:uppercase;background:var(--black);color:var(--white);text-align:center;cursor:pointer;border:none;font-family:'Montserrat',sans-serif;text-decoration:none}
+
+/* HERO */
+.hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:80px 48px;position:relative;border-bottom:0.5px solid var(--border)}
+.hero-eyebrow{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--mid);margin-bottom:32px;animation:fadeUp 0.8s ease both}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:72px;font-weight:300;line-height:1.05;margin-bottom:32px;max-width:700px;animation:fadeUp 0.8s 0.15s ease both}
+.hero-title em{font-style:italic}
+.hero-sub{font-size:12px;letter-spacing:0.05em;color:var(--mid);max-width:420px;line-height:2;margin-bottom:48px;animation:fadeUp 0.8s 0.3s ease both}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fadeUp 0.8s 0.45s ease both}
+.btn-dark{background:var(--black);color:var(--white);padding:14px 36px;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;transition:opacity 0.2s;text-decoration:none;display:inline-block}
+.btn-dark:hover{opacity:0.8}
+.btn-outline{background:transparent;color:var(--black);padding:14px 36px;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;border:0.5px solid var(--black);cursor:pointer;font-family:'Montserrat',sans-serif;transition:all 0.2s;text-decoration:none;display:inline-block}
+.btn-outline:hover{background:var(--black);color:var(--white)}
+.hero-scroll{position:absolute;bottom:32px;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mid);animation:fadeUp 0.8s 0.6s ease both}
+
+/* SECTIONS */
+.section{padding:96px 48px;border-bottom:0.5px solid var(--border)}
+.section-label{font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:var(--mid);margin-bottom:20px}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:300;line-height:1.15;margin-bottom:56px;max-width:500px}
+.section-title em{font-style:italic}
+
+/* FOR YOU */
+.for-you-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.for-you-card{background:var(--white);padding:40px 32px;transition:background 0.2s}
+.for-you-card:hover{background:var(--grey)}
+.card-num{font-size:11px;letter-spacing:0.2em;color:var(--mid);margin-bottom:20px}
+.card-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;margin-bottom:14px;line-height:1.3}
+.card-desc{font-size:11px;line-height:1.9;color:var(--mid)}
+
+/* SERVICES */
+.services-section{padding:96px 48px;border-bottom:0.5px solid var(--border);background:var(--grey)}
+.services-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.service-item{display:flex;justify-content:space-between;align-items:flex-start;padding:20px 0;border-bottom:0.5px solid var(--border);gap:16px}
+.service-name{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:400}
+.service-desc{font-size:11px;color:var(--mid);line-height:1.8;max-width:240px;text-align:right}
+
+/* PROCESS */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:56px}
+.step{background:var(--white);padding:40px 28px;transition:background 0.2s}
+.step:hover{background:var(--grey)}
+.step-num{font-size:32px;font-family:'Cormorant Garamond',serif;font-weight:300;color:var(--border);margin-bottom:20px}
+.step-title{font-size:13px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px}
+.step-desc{font-size:11px;line-height:1.9;color:var(--mid)}
+
+/* PROMISE */
+.promise-section{padding:96px 48px;border-bottom:0.5px solid var(--border);background:var(--black);color:var(--white)}
+.promise-section .section-label{color:#555}
+.promise-section .section-title{color:var(--white)}
+.promise-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#1a1a1a;margin-top:56px}
+.promise-item{background:var(--black);padding:32px 28px;transition:background 0.2s}
+.promise-item:hover{background:#111}
+.promise-check{font-size:18px;margin-bottom:12px;color:#444}
+.promise-text{font-size:12px;line-height:1.9;color:#999}
+
+/* DIASPORA */
+.diaspora-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.diaspora-feat{padding:20px 0;border-bottom:0.5px solid var(--border)}
+.diaspora-feat-title{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px}
+.diaspora-feat-desc{font-size:11px;line-height:1.9;color:var(--mid)}
+.diaspora-quote{background:var(--grey);padding:48px 40px}
+.diaspora-quote p{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;font-style:italic;line-height:1.5;color:var(--black)}
+.diaspora-quote cite{display:block;margin-top:24px;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mid)}
+
+/* CONTACT FORM */
+.contact-section{padding:96px 48px;border-bottom:0.5px solid var(--border)}
+.contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.contact-info{}
+.contact-title{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;line-height:1.1;margin:16px 0 32px}
+.contact-title em{font-style:italic}
+.contact-details{margin-top:40px;display:flex;flex-direction:column;gap:24px}
+.contact-item label{display:block;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mid);margin-bottom:6px}
+.contact-item a{font-size:13px;color:var(--black);text-decoration:none;transition:opacity 0.2s}
+.contact-item a:hover{opacity:0.6}
+.contact-item span{font-size:13px}
+.contact-form{padding:48px 40px;background:var(--grey)}
+.form-group{margin-bottom:24px}
+.form-group label{display:block;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--mid);margin-bottom:10px}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:var(--white);border:0.5px solid var(--border);padding:14px 16px;font-size:12px;font-family:'Montserrat',sans-serif;color:var(--black);outline:none;transition:border-color 0.2s;-webkit-appearance:none}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--black)}
+.form-group textarea{resize:vertical;min-height:100px}
+.form-submit{width:100%;background:var(--black);color:var(--white);padding:16px;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;transition:opacity 0.2s;margin-top:8px}
+.form-submit:hover{opacity:0.8}
+.form-submit:disabled{opacity:0.5;cursor:not-allowed}
+.form-success{display:none;text-align:center;padding:32px;background:var(--white);border:0.5px solid var(--border)}
+.form-success p{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;font-style:italic;margin-bottom:8px}
+.form-success small{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--mid)}
+
+/* FOOTER */
+footer{padding:32px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:300;letter-spacing:0.1em}
+.footer-links{display:flex;gap:24px}
+.footer-links a{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--mid);text-decoration:none;transition:color 0.2s}
+.footer-links a:hover{color:var(--black)}
+.footer-copy{font-size:10px;color:var(--mid);letter-spacing:0.1em}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:20px 24px}
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  .mobile-menu.open{display:flex}
+  .hero{padding:60px 24px;min-height:80vh}
+  .hero-title{font-size:44px}
+  .section{padding:64px 24px}
+  .section-title{font-size:34px}
+  .for-you-grid,.steps{grid-template-columns:1fr}
+  .services-section{padding:64px 24px}
+  .services-inner{grid-template-columns:1fr;gap:40px}
+  .service-desc{text-align:left;max-width:none}
+  .promise-grid{grid-template-columns:1fr}
+  .diaspora-inner,.contact-inner{grid-template-columns:1fr;gap:40px}
+  .diaspora-quote{padding:32px 24px}
+  .contact-form{padding:32px 24px}
+  footer{padding:24px;flex-direction:column;text-align:center}
+  .contact-title{font-size:36px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="top">
+  <a href="#top" class="nav-logo">The Bridal Concierge</a>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#how-it-works">How it works</a>
+    <a href="#diaspora">Diaspora brides</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Book a call</button>
+  <div class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#how-it-works" onclick="closeMenu()">How it works</a>
+  <a href="#diaspora" onclick="closeMenu()">Diaspora brides</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+  <a href="#contact" class="mob-cta" onclick="closeMenu()">Book a free call</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-eyebrow">Bridal concierge — Lagos, Nigeria</p>
+  <h1 class="hero-title">Your wedding, <em>handled.</em><br>You just show up and glow.</h1>
+  <p class="hero-sub">We handle the vendors, the logistics, the follow-ups — so you stay calm, present, and beautiful.</p>
+  <div class="hero-btns">
+    <a href="#contact" class="btn-dark">Book a free consultation</a>
+    <a href="#services" class="btn-outline">See what we do</a>
+  </div>
+  <span class="hero-scroll">Scroll to explore</span>
+</section>
+
+<!-- FOR YOU -->
+<section class="section reveal" id="for-you">
+  <p class="section-label">This is for you if —</p>
+  <h2 class="section-title">You are a bride who <em>deserves</em> more.</h2>
+  <div class="for-you-grid">
+    <div class="for-you-card">
+      <p class="card-num">01</p>
+      <h3 class="card-title">The busy bride</h3>
+      <p class="card-desc">You have a career, a life, and a thousand things on your plate. Your wedding should not be another stressor to manage.</p>
+    </div>
+    <div class="for-you-card">
+      <p class="card-num">02</p>
+      <h3 class="card-title">The diaspora bride</h3>
+      <p class="card-desc">You are planning your Nigerian wedding from abroad. You need someone on the ground you can truly trust.</p>
+    </div>
+    <div class="for-you-card">
+      <p class="card-num">03</p>
+      <h3 class="card-title">The intentional bride</h3>
+      <p class="card-desc">You have a vision. You just want the right person to execute it — beautifully, calmly, and without the chaos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section reveal" id="services">
+  <div class="services-inner">
+    <div>
+      <p class="section-label">What we offer</p>
+      <h2 class="section-title">Everything your <em>wedding</em> needs.</h2>
+      <p style="font-size:11px;line-height:1.9;color:var(--mid);max-width:340px">From your first vendor call to your last dance — we are with you every step of the way.</p>
+    </div>
+    <div>
+      <div class="service-item">
+        <span class="service-name">Bridal assistance &amp; support</span>
+        <span class="service-desc">Hands-on, personalised coordination from day one to wedding day.</span>
+      </div>
+      <div class="service-item">
+        <span class="service-name">Vendor sourcing &amp; liaison</span>
+        <span class="service-desc">We find, vet, and manage vendors on your behalf.</span>
+      </div>
+      <div class="service-item">
+        <span class="service-name">Souvenir &amp; outfit sourcing</span>
+        <span class="service-desc">Curated selections that match your vision and budget.</span>
+      </div>
+      <div class="service-item">
+        <span class="service-name">Bridal train rental</span>
+        <span class="service-desc">Coordinated looks for your girls — logistics handled.</span>
+      </div>
+      <div class="service-item">
+        <span class="service-name">Wedding day support</span>
+        <span class="service-desc">On-ground coordination so everything runs beautifully.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section reveal" id="how-it-works">
+  <p class="section-label">How it works</p>
+  <h2 class="section-title">Simple, clear, <em>stress-free.</em></h2>
+  <div class="steps">
+    <div class="step">
+      <p class="step-num">01</p>
+      <p class="step-title">Free discovery call</p>
+      <p class="step-desc">We get to know you, your vision, and your worries. No pressure, just a conversation.</p>
+    </div>
+    <div class="step">
+      <p class="step-num">02</p>
+      <p class="step-title">We plan together</p>
+      <p class="step-desc">A tailored proposal, clear contract, and a personalised planning timeline built around your wedding.</p>
+    </div>
+    <div class="step">
+      <p class="step-num">03</p>
+      <p class="step-title">You enjoy your day</p>
+      <p class="step-desc">We handle everything behind the scenes. You show up, glow, and be fully present.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROMISE -->
+<section class="promise-section reveal">
+  <p class="section-label">Our promise</p>
+  <h2 class="section-title">We do not make <em>vague</em> commitments.</h2>
+  <div class="promise-grid">
+    <div class="promise-item"><p class="promise-check">&#10003;</p><p class="promise-text">We respond to all messages within 24 hours on business days.</p></div>
+    <div class="promise-item"><p class="promise-check">&#10003;</p><p class="promise-text">Every vendor we recommend has been personally vetted by us.</p></div>
+    <div class="promise-item"><p class="promise-check">&#10003;</p><p class="promise-text">All payments to vendors are documented and receipted.</p></div>
+    <div class="promise-item"><p class="promise-check">&#10003;</p><p class="promise-text">If a confirmed vendor fails, we find a replacement immediately.</p></div>
+    <div class="promise-item"><p class="promise-check">&#10003;</p><p class="promise-text">You will never be left without a point of contact — even on your wedding day.</p></div>
+    <div class="promise-item"><p class="promise-check">&#10003;</p><p class="promise-text">Your peace of mind is not a bonus feature. It is the service.</p></div>
+  </div>
+</section>
+
+<!-- DIASPORA -->
+<section class="section reveal" id="diaspora">
+  <p class="section-label">For our diaspora brides</p>
+  <div class="diaspora-inner">
+    <div>
+      <h2 class="section-title">Planning from <em>abroad?</em><br>We are your eyes on the ground.</h2>
+      <div>
+        <div class="diaspora-feat">
+          <p class="diaspora-feat-title">Weekly video check-ins</p>
+          <p class="diaspora-feat-desc">Scheduled around your time zone — WhatsApp or Zoom. You see exactly what we see.</p>
+        </div>
+        <div class="diaspora-feat">
+          <p class="diaspora-feat-title">Full documentation</p>
+          <p class="diaspora-feat-desc">All vendor contracts and receipts shared with you directly. Total transparency.</p>
+        </div>
+        <div class="diaspora-feat">
+          <p class="diaspora-feat-title">Milestone-based payments</p>
+          <p class="diaspora-feat-desc">Staged payments tied to deliverables. You are always protected.</p>
+        </div>
+        <div class="diaspora-feat">
+          <p class="diaspora-feat-title">Dedicated ground contact</p>
+          <p class="diaspora-feat-desc">A trusted person present at every key moment — from venue visits to wedding morning.</p>
+        </div>
+      </div>
+    </div>
+    <div class="diaspora-quote">
+      <p>"You will never feel far away. We bring Nigeria to your screen, so your heart can stay calm."</p>
+      <cite>— Ope, founder of The Bridal Concierge</cite>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section reveal" id="contact">
+  <div class="contact-inner">
+    <div class="contact-info">
+      <p class="section-label">Ready to begin?</p>
+      <h2 class="contact-title">Let's make your <em>big day</em> unforgettable.</h2>
+      <p style="font-size:11px;line-height:1.9;color:var(--mid)">Fill in the form and we will get back to you within 24 hours. Or reach us directly below.</p>
+      <div class="contact-details">
+        <div class="contact-item">
+          <label>WhatsApp</label>
+          <a href="https://wa.me/2347071081131" target="_blank">07071081131</a>
+        </div>
+        <div class="contact-item">
+          <label>Email</label>
+          <a href="mailto:thebridalconceirge.ng@gmail.com">thebridalconceirge.ng@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <label>Instagram</label>
+          <a href="https://instagram.com/theebridalconceirge.ng" target="_blank">@theebridalconceirge.ng</a>
+        </div>
+        <div class="contact-item">
+          <label>Hours</label>
+          <span>Monday – Saturday, 9am – 7pm WAT</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="contact-form" id="formContainer">
+        <form id="contactForm">
+          <div class="form-group">
+            <label>Your name</label>
+            <input type="text" name="name" placeholder="Full name" required>
+          </div>
+          <div class="form-group">
+            <label>Email address</label>
+            <input type="email" name="email" placeholder="your@email.com" required>
+          </div>
+          <div class="form-group">
+            <label>WhatsApp number</label>
+            <input type="tel" name="whatsapp" placeholder="+44 or +1 or 080...">
+          </div>
+          <div class="form-group">
+            <label>Wedding date</label>
+            <input type="date" name="wedding_date">
+          </div>
+          <div class="form-group">
+            <label>I am a</label>
+            <select name="bride_type">
+              <option value="">Select...</option>
+              <option value="Local bride">Local bride (Nigeria)</option>
+              <option value="Diaspora bride">Diaspora bride (abroad)</option>
+              <option value="Busy working bride">Busy working bride</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Tell us about your wedding</label>
+            <textarea name="message" placeholder="Your vision, concerns, or questions..."></textarea>
+          </div>
+          <button type="submit" class="form-submit" id="submitBtn">Send enquiry</button>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <p>"Thank you for reaching out, beautiful bride."</p>
+          <small>Ope will be in touch within 24 hours &#10024;</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">The Bridal Concierge</div>
+  <div class="footer-links">
+    <a href="https://wa.me/2347071081131" target="_blank">WhatsApp</a>
+    <a href="https://instagram.com/theebridalconceirge.ng" target="_blank">Instagram</a>
+    <a href="mailto:thebridalconceirge.ng@gmail.com">Email</a>
+  </div>
+  <div class="footer-copy">© 2026 The Bridal Concierge. Lagos, Nigeria.</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+emailjs.init("jjV3V6kQUeZrH8e44");
+// Mobile menu
+function toggleMenu(){
+  const m=document.getElementById('mobileMenu');
+  m.classList.toggle('open');
+}
+function closeMenu(){
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+
+// Scroll reveal
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible')}});
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// Form submission via EmailJS
+document.getElementById('contactForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  const params = {
+    from_name: document.querySelector('[name="name"]').value,
+    from_email: document.querySelector('[name="email"]').value,
+    whatsapp: document.querySelector('[name="whatsapp"]').value,
+    wedding_date: document.querySelector('[name="wedding_date"]').value,
+    bride_type: document.querySelector('[name="bride_type"]').value,
+    message: document.querySelector('[name="message"]').value,
+  };
+
+  emailjs.send('service_5cv767i', 'template_boc2a42', params)
+    .then(function(){
+      document.getElementById('contactForm').style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    }, function(error){
+      btn.disabled = false;
+      btn.textContent = 'Send enquiry';
+      alert('Something went wrong. Please reach us directly at thebridalconceirge.ng@gmail.com or WhatsApp 07071081131');
+      console.error('EmailJS error:', error);
+    });
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',function(e){
+    const target=document.querySelector(this.getAttribute('href'));
+    if(target){e.preventDefault();target.scrollIntoView({behavior:'smooth'});}
+  });
+});
+</script>
+</body>
+</html>
